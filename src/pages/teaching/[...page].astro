@@ -1,0 +1,59 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+
+import { getAllTeachingPosts, getUniqueTags, sortTeachingMDByDate } from "@/data/teaching";
+import PageLayout from "@/layouts/Base.astro";
+import TeachingPreview from "@/components/teaching/TeachingPreview.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const MAX_POSTS_PER_PAGE = 10;
+  const allTeachingPosts = await getAllTeachingPosts();
+  const sortedTeachingPosts = sortTeachingMDByDate(allTeachingPosts);
+  const uniqueTags = getUniqueTags(allTeachingPosts);
+  return paginate(sortedTeachingPosts, { pageSize: MAX_POSTS_PER_PAGE, props: { uniqueTags } });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  page: Page<CollectionEntry<"teaching">>;
+  uniqueTags: string[];
+}
+
+const { page, uniqueTags } = Astro.props;
+
+const meta = {
+  description: "Browse through various teaching topics and lessons.",
+  title: "Teaching",
+};
+
+const paginationProps = {
+  ...(page.url.prev && {
+    prevUrl: {
+      text: `← Previous Page`,
+      url: page.url.prev,
+    },
+  }),
+  ...(page.url.next && {
+    nextUrl: {
+      text: `Next Page →`,
+      url: page.url.next,
+    },
+  }),
+};
+---
+
+<PageLayout meta={meta}>
+  <h1 class="title mb-6">Teaching</h1>
+  <div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
+    <section aria-label="Teaching post list">
+      <h2 class="title text-lg">Math</h2>
+      <ul class="mb-8 mt-6 space-y-8 text-start">
+        {page.data.map((p) => (
+          <li class="grid gap-2 sm:grid-cols-[auto_1fr] sm:[&_q]:col-start-2">
+            <TeachingPreview post={p} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</PageLayout>

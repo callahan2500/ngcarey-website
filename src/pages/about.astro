@@ -1,0 +1,60 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	description: "My name is Nicholas Carey, I write about science, history, religion, and other random topics.",
+	title: "About",
+};
+---
+
+<PageLayout meta={meta}>
+	<div class="space-y-6">
+		<img src="/aboutme.jpg" alt="Nicholas Carey" class="w-full h-auto mb-6">
+		<h1 class="title">About Me</h1>
+		<p>
+			I'm a New York based product manager, researcher, and occasional entrepreneur focused on building a career at the intersection of tech, science, education, 
+			and community-development. My longterm goal is to build tools & experiences that make it as easy as possible for anyone, anywhere to access the education, 
+			community, and capital they need to reach their potential. 
+		</p>
+		<p>
+			Professionally, I've had the privilege to work at both venture-backed startups, large national nonprofits, and pursue my own entrepreneurial projects. These 
+			experiences have taught me a lot about product development, from how to ask the right questions and manage competing priorites to software development and UX design.
+
+			My most recent role was <b>Technical Lead</b> at <i><a href = "https://sprintfolio.com">Sprintfolio</a></i>, where I had the opportunity to grow my developer skills by building a learning platform. 
+			I also had the chance to work with LLMs to build a learning co-pilot that helped our users answer questions, get feedback, and learn while working on real-world projects.
+
+			</p>
+		<p>
+			On the side, I like to create educational content about math and science, improve my data science skills through research projects, and host dinner parties across NYC. I'm also into worldbuilding – 
+			since 2013, I've been writing about a world called Leatix and currently writing a fictional book about it.
+		</p>
+
+	</div>
+	<br>
+	<div class="space-y-6">
+		<h1 class="title">Things I've worked on over the years</h1>
+
+		<p>Here are some some projects I've worked on, either at a company or independently </p>
+		<ul class="list-inside list-disc">
+			<li>Sprintfolio.com - A Personalized Career Training Platform</li>
+			<li>Juni Learning - Course Marketplace</li>
+			<li>Zearn - Kindergarten Digital Lessons</li>
+			<li>Tessera - COVID-19 Resource Chatbot</li>
+		</ul>
+
+	</div>
+	<br>
+	<div class="space-y-6">
+		<h1 class="title">Education</h1>
+		<p><b>Rensselaer Polytechnic Institute</b> - B.S Applied Physics</p>
+		<p><i>Concentration:</i> Complex Systems</p>
+
+
+	</div>
+	<br>
+	<div class="space-y-6">
+		<h1 class="title">Contact Me</h1>
+		<p>Email: ncarey2400 [at] gmail [dot] com</p>
+
+	</div>
+</PageLayout>

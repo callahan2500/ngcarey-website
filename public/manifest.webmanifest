@@ -1,0 +1,22 @@
+{
+	"name": "Nicholas Carey's Blog",
+	"short_name": "NGCarey Blog",
+	"description": "Hi there, this is my personal website. Thanks for visiting!",
+	"icons": [
+		{
+			"src": "/nglogo_stairs.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "/nglogo_stairs100.png",
+			"sizes": "100x100",
+			"type": "image/png"
+		}
+
+	],
+	"start_url": "/",
+	"background_color": "#1d1f21",
+	"theme_color": "#2bbc8a",
+	"display": "standalone"
+}

@@ -1,0 +1,119 @@
+---
+import { menuLinks } from "@/site-config";
+
+import Search from "../Search.astro";
+import ThemeToggle from "../ThemeToggle.astro";
+
+const url = new URL(Astro.request.url);
+---
+
+<header class="group relative mb-28 flex items-center sm:ps-[4.5rem]" id="main-header">
+	<div class="flex sm:flex-col">
+		<a
+			aria-current={url.pathname === "/" ? "page" : false}
+			class="inline-flex items-center hover:filter-none sm:relative sm:inline-block"
+			href="/"
+		>
+			<svg
+				aria-hidden="true"
+				class="me-3 h-12 w-8 sm:absolute sm:start-[-4.5rem] sm:me-0 sm:h-16 sm:w-16 group-hover:grayscale"
+				fill="none"
+				focusable="false"
+				viewBox="0 0 100 100"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<title>Logo</title>
+				<path d="m86.301 28.398v-0.19922-0.19922c0-0.10156 0-0.10156-0.10156-0.19922v-0.10156l-0.30469-0.30469c-0.10156 0-0.10156-0.10156-0.19922-0.10156l-0.10156-0.10156-35.492-18.293h-0.19922c-0.10156 0-0.19922-0.10156-0.30078-0.10156h-0.30078-0.30078c-0.10156 0-0.19922 0.10156-0.30078 0.10156 0 0-0.10156 0-0.19922 0.10156l-8.6016 5.3008-0.10156 0.10156-0.10156 0.10156c-0.10156 0.10156-0.19922 0.19922-0.30078 0.39844-0.10156 0.10156-0.10156 0.30078-0.10156 0.39844v0.10156 0.10156 9l-7.8984 4.8984-0.20312 0.20312c-0.10156 0.10156-0.19922 0.19922-0.30078 0.39844-0.10156 0.10156-0.10156 0.30078-0.10156 0.39844v0.10156 0.10156 9l-7.8984 4.8984-0.20312 0.20312c-0.10156 0.10156-0.19922 0.19922-0.30078 0.39844-0.10156 0.10156-0.10156 0.30078-0.10156 0.39844v0.10156 0.10156 9l-7.8984 4.8984-0.20312 0.20312c-0.10156 0.10156-0.19922 0.19922-0.30078 0.39844-0.10156 0.10156-0.10156 0.30078-0.10156 0.39844v0.10156 0.10156 9.8008 0.19922c0 0.10156 0 0.19922 0.10156 0.30078 0 0.10156 0.10156 0.19922 0.10156 0.19922 0 0.10156 0.10156 0.19922 0.19922 0.19922 0.10156 0.10156 0.10156 0.10156 0.19922 0.19922 0.10156 0 0.10156 0.10156 0.10156 0.10156l35.398 19.199c0.10156 0 0.19922 0.10156 0.19922 0.10156h0.10156 0.30078c0.10156 0 0.19922 0 0.39844-0.10156h0.10156c0.10156 0 0.19922-0.10156 0.19922-0.10156l34.301-21.801c0.39844-0.30078 0.60156-0.69922 0.60156-1.1992l0.19922-39.398c0.015625-0.007812 0.015625-0.007812 0.015625-0.10937zm-44-10.598 32.602 16.898v6.6016l-32.602-16.902zm-8.6016 15.098 32.602 16.898v6.6016l-32.602-16.898zm-8.5977 15.102 32.602 16.898v6.6016l-32.602-16.898zm-8.6016 15.102 32.602 16.898v7.3984l-32.602-17.699zm35.398 24.098v-7.3008l7.8984-4.8984c0.10156-0.10156 0.19922-0.10156 0.19922-0.19922l0.10156-0.10156c0.10156-0.10156 0.10156-0.19922 0.19922-0.30078 0.10156-0.10156 0.10156-0.30078 0.10156-0.39844v-0.10156-0.10156-9l7.8984-4.8984c0.10156 0 0.10156-0.10156 0.19922-0.19922l0.10156-0.10156c0.10156-0.10156 0.10156-0.19922 0.19922-0.30078 0.10156-0.10156 0.10156-0.30078 0.10156-0.39844v-0.10156-0.10156-9l7.8984-4.8984c0.10156 0 0.10156-0.10156 0.19922-0.19922l0.10156-0.10156c0.10156-0.10156 0.10156-0.19922 0.19922-0.30078 0.10156-0.10156 0.10156-0.30078 0.10156-0.39844v-0.10156-0.10156-9l5.8008-3.6016-0.10156 36.102z" fill="#ff814a"/>
+			</svg>
+			<span class="text-xl font-bold sm:text-2xl">Nicholas Carey</span>
+		</a>
+
+
+		<nav
+			aria-label="Main menu"
+			class="absolute -inset-x-4 top-14 hidden flex-col items-end gap-y-4 rounded-md bg-bgColor/[.85] py-4 text-accent shadow backdrop-blur group-[.menu-open]:z-50 group-[.menu-open]:flex sm:static sm:z-auto sm:-ms-4 sm:mt-1 sm:flex sm:flex-row sm:items-center sm:divide-x sm:divide-dashed sm:divide-accent sm:rounded-none sm:bg-transparent sm:py-0 sm:shadow-none sm:backdrop-blur-none"
+			id="navigation-menu"
+		>
+			{
+				menuLinks.map((link) => (
+					<a
+						aria-current={url.pathname === link.path ? "page" : false}
+						class="px-4 py-4 underline-offset-2 sm:py-0 sm:hover:underline"
+						data-astro-prefetch
+						href={link.path}
+					>
+						{link.title}
+					</a>
+				))
+			}
+		</nav>
+	</div>
+	<Search />
+	<ThemeToggle />
+	<mobile-button>
+		<button
+			aria-expanded="false"
+			aria-haspopup="menu"
+			aria-label="Open main menu"
+			class="group relative ms-4 h-7 w-7 sm:invisible sm:hidden"
+			id="toggle-navigation-menu"
+			type="button"
+		>
+			<svg
+				aria-hidden="true"
+				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
+				fill="none"
+				focusable="false"
+				id="line-svg"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path d="M3.75 9h16.5m-16.5 6.75h16.5" stroke-linecap="round" stroke-linejoin="round"
+				></path>
+			</svg>
+			<svg
+				aria-hidden="true"
+				class="absolute start-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-0 text-accent opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
+				class="text-accent"
+				fill="none"
+				focusable="false"
+				id="cross-svg"
+				stroke="currentColor"
+				stroke-width="1.5"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+			</svg>
+		</button>
+	</mobile-button>
+</header>
+
+<script>
+	import { toggleClass } from "@/utils";
+
+	class MobileNavBtn extends HTMLElement {
+		private headerEl: HTMLElement;
+		private menuOpen: boolean;
+		private mobileButtonEl: HTMLButtonElement;
+
+		toggleMobileMenu = () => {
+			toggleClass(this.headerEl, "menu-open");
+			this.menuOpen = !this.menuOpen;
+			this.mobileButtonEl.setAttribute("aria-expanded", this.menuOpen.toString());
+		};
+
+		constructor() {
+			super();
+			this.headerEl = document.getElementById("main-header")!;
+			this.mobileButtonEl = this.querySelector("button") as HTMLButtonElement;
+			this.menuOpen = false;
+
+			this.mobileButtonEl.addEventListener("click", this.toggleMobileMenu);
+		}
+	}
+
+	customElements.define("mobile-button", MobileNavBtn);
+</script>

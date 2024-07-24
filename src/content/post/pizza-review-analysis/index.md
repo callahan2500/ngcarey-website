@@ -6,13 +6,12 @@ tags: ["data science"]
 coverImage:
   src: "./article_cover.png"
   alt: "Article Cover Dave with Pizza"
-
 draft: false
 ---
 
 If you spend any time on the internet, you probably have heard of Dave Portnoy. The founder of [Barstool Sports](https://www.barstoolsports.com/), he’s also a prolific pizza reviewer. Since 2013, Portnoy has reviewed nearly 2,000 pizzerias and his [videos](https://www.youtube.com/@OneBitePizzaReviews) regularly gain hundreds of thousands of views. 
 
-Portnoy’s ‘One Bite’ reviews can also transform the fate of small businesses. Last year, Portnoy gave the obscure West Palm Beach pizzeria Ah-Beetz a “monster score” of an 8.4. Today, Ah-Beetz still sees [long lines](https://www.miaminewtimes.com/restaurants/barstool-pizza-david-portnoy-praises-ah-beetz-in-delray-beach-16639968) and is opening up [four new locations](https://ah-beetz.com/ah-beetz-locations/) to keep up with demand. 
+Portnoy’s ‘One Bite’ reviews can also transform the fate of small businesses. Last year, Portnoy gave the obscure West Palm Beach pizzeria Ah-Beetz a “monster score” of an 8.4. Today, Ah-Beetz still sees [long lines](https://www.miaminewtimes.com/restaurants/barstool-pizza-david-portnoy-praises-ah-beetz-in-delray-beach-16639968) and is opening [four new locations](https://ah-beetz.com/ah-beetz-locations/) to keep up with demand. 
 
 I’m a longtime viewer of Portnoy’s reviews. The videos are entertaining and I use them to find good pizza. Recently, I’ve noticed a growing sentiment amongst the Youtube comments – Portnoy’s scores have gotten higher. Dave used to issue “real” scores back in the day. Now? He’s a lot more generous and giving mostly 7’s. 
 
@@ -29,12 +28,12 @@ Before I could start, I needed his scores. To my surprise, I could not find an e
 
 1. Pizzeria Name
 2. Address
-3. Dave's Score
+3. Portnoy's Score
 4. OneBite Community Score
 5. Number of Community Reviews
 6. Dave's Review Date
 
-Once I had this data in a table, I removed reviews from 2013 through 2015 and 2024 because they had less than 50 reviews or were an incomplete year. Then, I added a ‘Score Difference’ column which measured the difference between the Community Score and Portnoy’s Score.
+Once I had this dataset, I removed reviews from 2013 through 2015 and 2024 because they had less than 50 reviews or were an incomplete year. Then, I added a ‘Score Difference’ column which measured the difference between the Community Score and Portnoy’s Score.
 
 ### Are Portnoy's scores getting higher?
 My first step was determining if Portnoy’s scores changed over time. Plot 1 displays Portnoy’s average score per year, along with error bars. The larger the error bar, the more frequent extreme values, like 2's or 9's, occurred that year. 
@@ -62,9 +61,9 @@ I started by watching his videos to find evidence of the shift's cause. Over the
 
 The videos told an interesting story. Most reviews between 2016 and 2017 were located in NYC. Occasionally, Portnoy alluded to how he found the [spot](https://onebite.app/restaurant/norma-new-york-ny-3be6fd2e). Generally, this was via a friend, an internet comment, or sometimes it appeared like the pizzeria was just along the way to where he was going. Essentially, it felt random. 
 
-Contrast that with his post-2020 reviews. New York City reviews became less common, replaced with trips to different states like Florida or areas known for their pizza like Connecticut. In several videos, Portnoy would ask his assistant how he found the pizzeria, to which he’d often answered it was through the One Bite App.
+Contrast that with his post-2020 reviews. New York City reviews became less common, replaced with trips to different states like Florida or areas known for their pizza like Connecticut. In several videos, Portnoy would ask his assistant how he found the pizzeria, to which he’d often answer it was through the One Bite App.
 
-I wanted to verify if this shift in review location may have had an affect on the average score. Plot 2 breaks down reviews by their locations per year. 
+I wanted to verify if this shift in review location may have affected the average score. Plot 2 breaks down reviews by their locations per year. 
 
 !["Review Location by Year"](./count_of_reviews_by_state.png)
 
@@ -83,7 +82,7 @@ This assumption is supported by Plot 3, which plots the distribution of pizzeria
 
 ### So, are Portnoy's Scores consistent?
 
-Since the selection bias affected the average scores, I couldn't rely on the average to determine if Portnoy's scoring had become more generous. To detect this, I needed to compare his scores with a consistent benchmark. Thankfully, there was the Community Score. The Community Score aggregated multiple individual scores taken overtime into one average. Therefore, the effect of an individual's biases are lessened, providing a good enough benchmark. 
+With the selection bias appearing to affect the average, I couldn't rely on the it to determine if Portnoy's scoring had become more generous. To detect this, I needed to compare his scores with a consistent benchmark. Thankfully, there was the Community Score. The Community Score aggregated multiple individual scores taken overtime into one average. Therefore, the effect of an individual's biases are lessened, providing a good enough benchmark. 
 
 I could compare the Community Score with its Portnoy Score using the Score Difference. If Portnoy's scoring had remained consistent over time, I would expect no change in the Score Difference. However, if he had become more generous over time, then I should see the difference steadily increasing. 
 
@@ -93,10 +92,10 @@ Plot 4 shows a line plot of the score difference for each review. To measure cha
 
 !["Score Difference over Time"](./difference_between_cs_and_ds.png)
 
-The trendline is effectively flat, hovering around Score Difference of 0.50. This flat slope therefore suggests Portnoy's scoring has been remarkably consistent, despite changes in how pizzerias are selected.
+The trendline is effectively flat, hovering around Score Difference of 0.50. This flat slope suggests Portnoy's scoring is remarkably consistent, despite changes in how pizzerias are selected.
 
 ### Conclusion
-Dave Portnoy has been reviewing pizza almost every day since 2013. In this analysis, I showed that perceived increasese in Portnoy's scoring likely stemmed from the way he and his team picked spots to review, not due to Portnoy becoming more generous with his scores. In fact, Portnoy's Scores demonstrated impressive consistency over time when compared with the Community Scores. 
+Dave Portnoy has been reviewing pizza almost every day since 2013. In this analysis, I showed that perceived increases in Portnoy's scoring likely stemmed from the way he and his team picked spots to review, not due to Portnoy becoming more generous with his scores. In fact, Portnoy's Scores demonstrated impressive consistency over time when compared with the Community Scores. 
 
 This is good news for OneBite users and pizzerias alike. While you may not agree with Portnoy’s taste, you can be more confident that a Portnoy 7.1 pizza reviewed in 2016 should be comparable to a 7.1 reviewed in 2023.   
 

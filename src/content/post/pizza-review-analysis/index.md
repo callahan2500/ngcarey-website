@@ -6,6 +6,7 @@ tags: ["data science"]
 coverImage:
   src: "./article_cover.png"
   alt: "Article Cover Dave with Pizza"
+ogImage: "./article_cover.png"
 draft: false
 ---
 
@@ -17,14 +18,14 @@ I’m a longtime viewer of Portnoy’s reviews. The videos are entertaining and 
 
 !["Comments from Youtube"](./dave_comments_yt.png)
 
-While it’s best to ignore Youtube comments, they made me curious: _**has the way Portnoy scores pizza changed?**_
+While it’s best to ignore Youtube comments, they made me curious: _**is Portnoy's giving higher scores?**_
 
-Suppose his scores have become more generous. Today’s 7.1 is yesterday’s 6.8. For pizzerias with older reviews, it means they’re being unfairly compared. There could be hundreds of great restaurants being overlooked simply because their review was done years ago. 
+Suppose his scores have become more generous. Today’s 7.1 is last year’s 6.8. For pizzerias with older reviews, it means they’d be unfairly compared. There could be hundreds of great restaurants overlooked simply because their review was done years ago. 
 
-In this article, I analyzed Portnoy's scoring consistency to determine whether his scores had become more generous.
+In this article, I analyzed Portnoy's scoring consistency to see if his scores had become more generous over time.
 
 ### Collecting the data
-Before I could start, I needed his scores. To my surprise, I could not find an existing dataset. So, I went to the source: the [OneBite website](https://onebite.app/reviews/dave). After reviewing the Terms & Conditions, I used a Python script to collect the following information for every review:
+Before I could start, I needed his scores. To my surprise, I could not find an existing dataset. So, I went to the source: the [OneBite website](https://onebite.app/reviews/dave). After reviewing the Terms & Conditions, I wrote a Python script to collect the following information for every review:
 
 1. Pizzeria Name
 2. Address
@@ -40,7 +41,7 @@ My first step was determining if Portnoy’s scores changed over time. Plot 1 di
 
 !["Portnoy's Average Pizza Score per Year"](./average_ds_per_year.png)
 
-Indeed, Portnoy’s average score increased. The average score in 2023 was nearly 14% higher than the 2016 average score. Additionally, there was a noticeable difference in error bar's length before and after 2020. When comparing key statistics, the post-2020 shift became clear:
+Indeed, Portnoy’s average score increased. The average score in 2023 was nearly 14% higher than the 2016 average score. Additionally, there was a noticeable difference in error bar's length before and after 2020. When comparing key statistics, this post-2020 shift became clear:
 
 |                   | 2016-2019 | 2020-2023 | Change (%) |
 |:------------------|:---------:|:---------:|:----------:|
@@ -51,9 +52,9 @@ Indeed, Portnoy’s average score increased. The average score in 2023 was nearl
 
 It appeared that, yes, Portnoy was scoring pizzas differently: since 2020, he'd been giving out higher and less extreme (variable) scores. Case closed?
 
-Not so fast. The shift in score variability made me suspicious. Even considering the pandemic, I expected to see the variance return to its pre-2020 level by 2023. But that didn’t happen. Something was making Portnoy’s scores higher and less extreme. 
+Not so fast. The shift in variability made me suspicious. Even considering the pandemic, I expected to see the variance return to its pre-2020 level by 2023. But that didn’t happen. Something was making Portnoy’s scores higher and less extreme. 
 
-Before I could claim Portnoy's scores had become more generous, I needed to figure out what was causing this shift.
+Before I could claim Portnoy had become more generous, I needed to figure out what was causing this shift.
 
 ### What caused Portnoy's scoring shift?
 
@@ -61,30 +62,30 @@ I started by watching his videos to find evidence of the shift's cause. Over the
 
 The videos told an interesting story. Most reviews between 2016 and 2017 were located in NYC. Occasionally, Portnoy alluded to how he found the [spot](https://onebite.app/restaurant/norma-new-york-ny-3be6fd2e). Generally, this was via a friend, an internet comment, or sometimes it appeared like the pizzeria was just along the way to where he was going. Essentially, it felt random. 
 
-Contrast that with his post-2020 reviews. New York City reviews became less common, replaced with trips to different states like Florida or areas known for their pizza like Connecticut. In several videos, Portnoy would ask his assistant how he found the pizzeria, to which he’d often answer it was through the One Bite App.
+Contrast that with his post-2020 reviews. New York City reviews became less common, replaced with trips to different states like Florida or areas known for their pizza like New Haven. In several videos, Portnoy would ask his assistant how he found the pizzeria, to which he’d often answer it was through the One Bite App.
 
-I wanted to verify if this shift in review location may have affected the average score. Plot 2 breaks down reviews by their locations per year. 
+I wanted to verify if this shift in review location may have affected the average score. Plot 2 breaks down reviews by their location per year. 
 
 !["Review Location by Year"](./count_of_reviews_by_state.png)
 
 Sure enough, review location closely correlated with the observed shift in average score. Between 2016 and 2019, the majority of reviews were in NYC. After 2020, the share of NYC-based reviews halved. Meanwhile, states like Florida and New Jersey saw increases in their share of reviews.
 
-Does this mean Florida and New Jersey have better pizza than New York? No, at least I don’t think so. Instead, I believe this is evidence of **selection bias**. 
+Does this mean Florida and New Jersey have better pizza than New York? No, at least I don’t think so. Rather, I suspect it points to a **selection bias**. 
 
-[Selection Bias](https://sph.unc.edu/wp-content/uploads/sites/112/2015/07/nciph_ERIC13.pdf) is a type of bias caused by the way data is selected. In a perfect world, Portnoy would select pizzerias randomly to help control for factors that might influence the score. As observed in the videos, the selection process in earlier years appeared to be more random than today's. Based on the videos I watched, here’s how I believe Portnoy’s selection currently works:
+[Selection Bias](https://sph.unc.edu/wp-content/uploads/sites/112/2015/07/nciph_ERIC13.pdf) is caused by the way sample data is selected from a population. If a sample is not randomly selected, it can create trends that lead to inaccurate conclusions. In a perfect world, Portnoy would select pizzerias randomly to help control for factors that might influence the score. As observed in the videos, the selection process in earlier years appeared to be more random than today's. Based on the videos I watched, here’s how I believe Portnoy’s selection currently works:
 
-It generally begins with Portnoy taking a trip, perhaps to Florida or Nantucket. Dave may be less familiar with the pizza options in these areas and, as his popularity has grown, wants to focus on trying only the "best" places. So Portnoy tasks his assistant to use the OneBite App and select the area's pizzerias with the highest Community Score. Therefore, the score increase observed in Plot 1 isn’t necessarily from Portnoy being more generous or 'being off his game'. Instead, his assistant is picking more highly rated pizzerias. 
+It seems to begin with Portnoy taking a trip, perhaps to Florida or Nantucket. Dave may be less familiar with the pizza options in these areas and, as his popularity has grown, wants to focus on trying only the "best" places. So Portnoy tasks his assistant to use the OneBite App and select pizzerias with the highest Community Score. Therefore, the score increase observed in Plot 1 isn’t necessarily from Portnoy being more generous or 'being off his game'. Instead, his assistant is picking more highly rated pizzerias. 
 
-This assumption is supported by Plot 3, which plots the distribution of pizzeria Community Scores for 2016-2019 and 2020-2023. The post-2020 period had a higher concentration, or density, of restaurants with a higher Community Score whereas 2016-2019 had less and was more spread out. 
+This assumption is supported by Plot 3, which shows the distribution of pizzeria Community Scores for 2016-2019 and 2020-2023. The post-2020 period had a higher concentration, or density, of restaurants with higher Community Scores whereas 2016-2019 had less and was more spread out. 
 
 !["Restaurant Quality Distribution"](./kde_plot_restaurant_quality.png)
 
 
 ### So, are Portnoy's Scores consistent?
 
-With the selection bias appearing to affect the average, I couldn't rely on the it to determine if Portnoy's scoring had become more generous. To detect this, I needed to compare his scores with a consistent benchmark. Thankfully, there was the Community Score. The Community Score aggregated multiple individual scores taken overtime into one average. Therefore, the effect of an individual's biases are lessened, providing a good enough benchmark. 
+With the change in how Portnoy selects pizzerias affecting the average, I couldn't rely on the it to determine if Portnoy's had become more generous. To detect this, I needed to compare his scores with a consistent benchmark. Thankfully, there was the Community Score. The Community Score aggregated multiple individual scores taken overtime into one average. Therefore, the effect of an individual's biases are lessened, and I felt it provided a sufficient benchmark. 
 
-I could compare the Community Score with its Portnoy Score using the Score Difference. If Portnoy's scoring had remained consistent over time, I would expect no change in the Score Difference. However, if he had become more generous over time, then I should see the difference steadily increasing. 
+I could compare the Community Score with its Portnoy Score using the Score Difference. If Portnoy had remained consistent over time, I would expect little to no change in the Score Difference. However, if he _had_ become more generous over time, then I'd expect to see the Score Difference steadily increasing. 
 
 !["Score Difference Meaning"](./score_difference_trends_and_meaning.png)
 
@@ -106,17 +107,17 @@ This is good news for OneBite users and pizzerias alike. While you may not agree
 - [One Bite Website](https://onebite.app/reviews/dave)
 
 #### Appendix B: Community Score Note
-In this analysis, I used the Community Score as a benchmark. You might be asking, "well, what if the Community Score had also become more generous over time"? You'd be right to ask that question. This analysis assumes Community Scores remained intrinsically consistent and had not become more generous over time. Here are two reasons that I believe justify this assumption:
+In this analysis, I used the Community Score as a benchmark. You might ask, "what if the Community Score had also become more generous over time?" and you'd be right to ask that question. This analysis assumed Community Scores remained consistent and did not experience any inflation over time. Here are two reasons that I believe justify this assumption:
 
 1. Composite Nature: The Community Score is an average of multiple individual scores. This helps reduce the influence or bias of any specific individual.
-2. Temporal Spread: The individual scores that make up the Community Score are spread out over time. This helps control for changes in the restaurant's quality.
+2. Temporal Spread: The individual scores that make up the Community Score are spread out over time. This helps control for temporal changes in the restaurant's quality.
 
 #### Appendix C: Stats stuff for nerds
-I made a few decisions in this analysis that I'd like to explain for those of you interested in my approach.
+I made a few decisions in this analysis I'd like to explain for those interested in my approach.
 
-1. Error Bars: In Plot 1, I opted to use standard deviation to create my error bars instead of standard error because I wanted to emphasize the variability in pizza scores.
-2. Mean instead of Median: Median can sometimes be a better descriptive statistic than mean because it is less affected by outliers. However, just like the error bars, I wanted to demonstrate that the score data was highly variable and the Mean plot made that more obvious. Additionally, people are more likely to intuitively understand what the mean is and I wanted to ensure someone without a statistics background could understand the findings.
-3. Yearly Mean v. Monthly: Plot 1 measured the annual mean. I decided to use Year as the aggregate to keep the plot clean. A quick note - during my preliminary analysis I observed some interesting seasonality affects on the monthly mean, so maybe one day I'll do a followup analysis.
+1. Error Bars: In Plot 1, I opted to use standard deviation to create my error bars instead of standard error. I wanted to emphasize the variability in pizza scores and standard deviation displays this more than standard error.
+2. Mean instead of Median: Median is often a better descriptive statistic than mean because it is less affected by outliers. However, like the error bars, I wanted to demonstrate score data was highly variable and the mean plot made that obvious. Second, people see mean more than median and have a better intuition of what it means.
+3. Yearly Mean v. Monthly: Plot 1 measured the annual mean. I decided to use Year as the aggregate to keep the plot clean. However, in my preliminary analysis, I observed seasonality affected the monthly mean, so I might do a followup on this.
 4. Sampling: My analysis measured 1,410 reviews. This was less than the 1,737 reviews Dave had completed by the time I pulled the data (7/22/2024). The difference is mostly from the removal of 2013-2015 and 2024 reviews, but my web-scraper did miss approximately 10% of reviews. This was due to how the scraper navigated the website. The scraper would search through each 'fan favorites' page, where it would search for pizzeria's that had both a Portnoy and a Community Score. Since I couldn't rank pizzerias by whether they had both scores, the scraper had to iterate through the thousands of pages. This took forever and had diminishing returns as the later pages had fewer pizzerias that fit my criteria. So, I stopped the scraping once I hit 90% of all reviews.
 
 

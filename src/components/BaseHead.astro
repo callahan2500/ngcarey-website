@@ -80,3 +80,15 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 }
 
 <meta content={Astro.generator} name="generator" />
+
+{import.meta.env.PROD && (
+	<>
+	  <script async src="https://www.googletagmanager.com/gtag/js?id=G-96F7W42PBF"></script>
+	  <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {{ dataLayer.push(arguments); }}
+		gtag('js', new Date());
+		gtag('config', 'G-96F7W42PBF');
+	  </script>
+	</>
+  )}

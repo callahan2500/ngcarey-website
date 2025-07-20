@@ -83,7 +83,7 @@ This assumption is supported by Plot 3, which shows the distribution of pizzeria
 
 ### So, are Portnoy's Scores consistent?
 
-With the change in how Portnoy selects pizzerias affecting the average, I couldn't rely on the it to determine if Portnoy's had become more generous. To detect this, I needed to compare his scores with a consistent benchmark. Thankfully, there was the Community Score. The Community Score aggregated multiple individual scores taken overtime into one average. Therefore, the effect of an individual's biases are lessened, and I felt it provided a sufficient benchmark. 
+With the change in how Portnoy selects pizzerias affecting the average, I couldn't rely on it to determine if Portnoy's had become more generous. To detect this, I needed to compare his scores with a consistent benchmark. Thankfully, there was the Community Score. The Community Score aggregated multiple individual scores taken overtime into one average. Therefore, the effect of an individual's biases are lessened, and I felt it provided a sufficient benchmark. 
 
 I could compare the Community Score with its Portnoy Score using the Score Difference. If Portnoy had remained consistent over time, I would expect little to no change in the Score Difference. However, if he _had_ become more generous over time, then I'd expect to see the Score Difference steadily increasing. 
 
